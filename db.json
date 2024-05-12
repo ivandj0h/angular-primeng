@@ -1,3 +1,16 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "8a2d",
+      "fullName": "admin",
+      "email": "admin@admin.com",
+      "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
+    },
+    {
+      "id": "9913",
+      "fullName": "juna",
+      "email": "juna@juna.com",
+      "password": "a9f41a49eecc77e3bd3348a20bab10138e670490a44439e0a3edae48fe692404"
+    }
+  ]
 }

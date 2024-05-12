@@ -1,0 +1,11 @@
+.navbar {
+  background-color: blue; /* Tetapkan warna background */
+}
+
+.nav-item {
+  text-decoration: none; /* Hapus garis bawah dari link */
+}
+
+.nav-item:hover {
+  text-decoration: underline; /* Tambahkan garis bawah saat hover */
+}
