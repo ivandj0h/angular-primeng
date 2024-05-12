@@ -20,4 +20,9 @@ Run `json-server --watch db.json` to run the fake server
 
 ![Login](/src/assets/login_page.png)
 
-`This Project is still on Development!`
+![Login Error](/src/assets/login_error.png)
+
+![home](/src/assets/home.png)
+
+
+Credit ivandjoh

@@ -14,13 +14,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

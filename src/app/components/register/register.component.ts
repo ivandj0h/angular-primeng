@@ -45,19 +45,36 @@ export class RegisterComponent {
     return this.registerForm.controls['confirmPassword'];
   }
 
-  submitDetails() {
-    const postData = { ...this.registerForm.value };
-    delete postData.confirmPassword;
-    this.authService.registerUser(postData as User).subscribe(
-      response => {
-        console.log(response);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register successfully' });
-        this.router.navigate(['login'])
-      },
-      error => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
-      }
-    )
+  async submitDetails() {
+    if (this.registerForm.valid && this.registerForm.value.password) {
+      const hashedPassword = await this.hashPassword(this.registerForm.value.password);
+      const postData = {
+        fullName: this.registerForm.value.fullName,
+        email: this.registerForm.value.email,
+        password: hashedPassword
+      };
+
+      this.authService.registerUser(postData as User).subscribe(
+        response => {
+          console.log(response);
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register successfully' });
+          this.router.navigate(['login']);
+        },
+        error => {
+          console.error(error);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
+        }
+      );
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill in all required fields correctly.' });
+    }
   }
 
+
+  private async hashPassword(password: string): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hash = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
 }
